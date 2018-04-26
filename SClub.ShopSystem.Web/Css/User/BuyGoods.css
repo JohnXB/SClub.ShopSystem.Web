@@ -1,0 +1,202 @@
+﻿body {
+}
+
+.specific {
+    width: 1060px;
+    padding: 10px;
+    margin:auto;
+}
+
+    .specific div {
+        text-align: left;
+    }
+
+    .specific .select-address {
+        margin-bottom:200px;
+    }
+
+        .specific .select-address .title {
+            border-bottom: 2px solid #BCBCBC;
+        }
+
+            .specific .select-address .title #title-left, #title-right {
+                display: inline-block;
+                width: 528px;
+            }
+
+            .specific .select-address .title .detail {
+                font-size: 20px;
+            }
+
+            .specific .select-address .title .detail button{
+                margin:0;
+                border:0;
+                background-color:white;
+                outline:none;
+            }
+
+.center .specific .select-address .title #title-left div {
+    text-align: left;
+}
+
+.center .specific .select-address .title #title-right div form{
+    text-align: right;
+}
+
+.center .specific .select-address .address-list {
+    margin-top: 20px;
+}
+
+    .center .specific .select-address .address-list div {
+        text-align: left;
+    }
+
+.specific .select-address .address-list .list-row {
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    width: 1000px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    border: 1px dashed #808080;
+}
+
+.specific .select-address .address-list .select, .address {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.specific .select-address .add-address {
+    margin-left: 100px;
+}
+
+.specific .select-address .add-address form{
+    text-align:left;
+}
+
+.specific .check-indent {
+    margin-top: 20px;
+}
+
+    .specific .check-indent .title {
+        font-size: 20px;
+    }
+
+    .specific .check-indent .table {
+    }
+
+        .specific .check-indent .table table {
+            margin: 0;
+        }
+
+        .specific .check-indent .table .table-title {
+            border-bottom: 2px solid #BCBCBC;
+        }
+
+        .specific .check-indent .table .table-body {
+            margin-top: 10px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .specific .check-indent .table .col-1 {
+            width: 400px;
+        }
+
+        .specific .check-indent .table .col-2 {
+            width: 200px;
+        }
+
+        .specific .check-indent .table .col-3 {
+            width: 200px;
+        }
+
+        .specific .check-indent .table .col-4 {
+            width: 200px;
+        }
+
+.specific .form {
+    margin-top: 20px;
+    height: 160px;
+}
+
+    .specific .form .form-right {
+        height: 160px;
+        margin: 0;
+        width: 380px;
+        float: right;
+    }
+
+        .specific .form .form-right .box {
+            width: 378px;
+            height: 118px;
+            border: 1px solid #FF3300;
+        }
+
+            .specific .form .form-right .box .box-right {
+                margin-top: 20px;
+                width: 350px;
+                height: 30px;
+                line-height: 30px;
+                text-align: right;
+                margin-bottom: 10px;
+            }
+
+            .specific .form .form-right .box .box-center {
+                margin-top: 5px;
+                width: 350px;
+                height: 20px;
+                line-height: 20px;
+                text-align: left;
+            }
+
+                .specific .form .form-right .box .box-center input {
+                    padding: 0;
+                    border: 0;
+                    width: 302px;
+                    outline: none;
+                    text-align: left;
+                }
+
+            .specific .form .form-right .box .box-bottom {
+                margin-top: 5px;
+                width: 350px;
+                height: 20px;
+                line-height: 20px;
+                margin-bottom: 5px;
+            }
+
+                .specific .form .form-right .box .box-bottom span {
+                    padding: 0;
+                    border: 0;
+                    outline: none;
+                    
+                    width: 302px;
+                }
+
+            .specific .form .form-right .box .box-right .price {
+                font-size: 26px;
+                color: #FF3300;
+            }
+
+        .specific .form .form-right .button button {
+            padding: 0;
+            border: 0;
+            background-color: white;
+            outline: none;
+            text-align: center;
+            margin: 0;
+            height: 40px;
+            width: 190px;
+        }
+
+        .specific .form .form-right .button #submit {
+            float: right;
+            background-color: #FF3300;
+            color: white;
+            border: 2px solid #FF3300;
+        }
+        .address-show{
+            font-size:15px;
+            
+        }

@@ -1,0 +1,188 @@
+﻿@model SClub.ShopSystem.Web.Models.GoodsModel
+@using SClub.ShopSystem.Web.Models;
+@{
+    ViewBag.Title = "商品详情";
+    Layout = "~/Views/Goods/_GoodsLayout.cshtml";
+}
+
+
+<link href="~/Css/Goods/GoodsDetail.css" rel="stylesheet" />
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Css/Goods/GoodsList.css" rel="stylesheet" />
+<div id="head">&nbsp;</div>
+<form class="layui-form serch_form" method="post" action="/Goods/Serch">
+    <div class="layui-form-item iDiv">
+        <input type="text" id="serch" name="serch" required lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
+    </div>
+    <button class="layui-btn iBtn">
+        <i class="layui-icon">&#xe615;</i>
+    </button>
+</form>
+
+<div class="center-block">
+    <div class="goods-detail">
+        <div class="position">
+            我的位置>@Model.GoodsStyle>商品详情
+        </div>
+        <div class="goods-content-buy">
+            <div class="left">
+                <div class="goodsImage">
+                    <img src="@Model.Img" id="img-goods" />
+                </div>
+            </div>
+            <div class="right">
+                <div class="goods-name">@Model.GoodsName</div>
+                <div class="use-times">
+
+                </div>
+                <div class="price-block">
+                    <div class="tit">价格：</div>
+                    <div class="p-icon">￥</div>
+                    <div class="price">@Model.Price</div>
+                </div>
+                <div class="payment">
+                    <div class="word">支付方式：</div>
+                    <img src="~/Img/支付宝.png" />
+                    <div class="word">支付宝</div>
+                </div>
+                <div class="mes">
+                    <div class="all">
+                        <div class="word">销售量</div>
+                        <div class="num month">@Model.SalesCount</div>
+                    </div>
+                    <div class="all">
+                        <div class="word">库存</div>
+                        <div class="num">@Model.GoodsCount</div>
+                    </div>
+                </div>
+                <div class="versions">
+                    <div class="word">上架时间：@Model.SaleTime</div>
+
+                </div>
+                <div class="number-block">
+                    <div class="word">数量：</div>
+                    <button type="button" id="reduce" onclick="ReduceCount()">-</button>
+                    <input id="number" value="1" />
+                    <button type="button" id="plus" onclick="AddCount()">+</button>
+
+                </div>
+                <div class="buy btns">
+                    <form action="/Goods/BuyGoods" method="post">
+                        <input name="orderModel[GoodsId]" value="@Model.GoodsId" />
+                        <input id="salesCount" name="orderModel[salesCount]" value="1" />
+                        <input id="versionId" name="VersionId" />
+                        @if (Session["user"] != null)
+                        {
+                            UserModel user = (UserModel)Session["user"];
+                            <input name="orderModel[UserId]" id="CustomerId" value="@user.UserId" />
+                        }
+                        else
+                        {
+                            <input name="orderModel[UserId]" id="CustomerId" value="null" />
+                        }
+                        <button class="buy-now">直接购买</button>
+                    </form>
+                    <button class="addCart add_cart_large btnCart" id="addCart" onclick="addCart(@Model.GoodsId)">加入购物车</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="goods-content-detail">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">商品详情</li>
+                    <li>配置要求</li>
+                    <li>评论列表</li>
+                    <li>购物指南</li>
+                    <li>遇到问题</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div>商品ID:@Model.GoodsId</div>
+                        <div>商品名:@Model.GoodsName</div>
+                        <div>商品价格:@Model.Price</div>
+                        <div>商品类型:@Model.GoodsStyle</div>
+                        <div>商品库存:@Model.GoodsCount</div>
+                        <div>商品销量:@Model.SalesCount</div>
+                        <div>商品简介:@Model.GoodsIntro</div>
+                        <div>上架时间:@Model.SaleTime</div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div>1.下载原版游戏并安装</div>
+                        <div>2.下载本帖的汉化补丁并安装</div>
+                        <div>3.开始LMAO汉化版</div>
+                        <div>注意：下载和安装汉化时，请关闭一切杀软、360及管家！注入dll等汉化组件容易被误报为病毒，其实完全无害，请大家放心使用！</div>
+
+
+
+</div>
+                    <div class="layui-tab-item">内容3</div>
+                    <div class="layui-tab-item">内容4</div>
+                    <div class="layui-tab-item">内容5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="foot">&nbsp;</div>
+    <script>
+        layui.use('element', function(){
+            var element = layui.element();
+
+        });
+        function addCart(goodsId){
+            var count = document.getElementById('salesCount').value;
+            var userId = document.getElementById('CustomerId').value;
+            $.ajax({
+                url: "/User/AddCart",
+                type: "GET",
+                data: { "userId": userId,"goodsId":goodsId,"count":count },
+                dataType: "Json",
+                error: function (xhr) {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        layer.msg('请先登录');
+                    });
+                    document.getElementById("login_btn").onclick();
+                },
+                success: function (data) {
+                    if (data == false) {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.msg('请先登录');
+                        });
+                        document.getElementById("login_btn").onclick();
+                    }
+                    else {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.msg('加入购物车成功');
+                        });
+                    }
+
+                }
+            })
+        }
+
+        function AddCount()
+        {
+            var count =parseInt(document.getElementById('number').value);
+            document.getElementById('number').value = count+1;
+            document.getElementById('salesCount').value = document.getElementById('number').value;
+
+        }
+        function ReduceCount()
+        {
+            if(document.getElementById('number').value > 1){
+                document.getElementById('number').value -= 1;
+            }
+            else {
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+
+                    layer.msg('数量不能小于1');
+                });
+            }
+            document.getElementById('salesCount').value = document.getElementById('number').value;
+        }
+    </script>

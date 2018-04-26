@@ -1,0 +1,90 @@
+﻿body {
+}
+.addressBox {
+    margin-top: 20px;
+    vertical-align: text-top;
+    margin-left: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    background-color: #ffffff;
+}
+
+    .addressBox:hover {
+        box-shadow: 0px 0px 50px #dcdcdc;
+    }
+
+.addNewAddress i {
+    font-size: 30px;
+    color: #53a4f4;
+}
+
+.addAddressBox {
+    cursor: pointer;
+    text-align: center;
+    line-height: 200px;
+    border: dashed 1px #b0b0b0;
+}
+
+.addressBox:hover {
+    box-shadow: 0px 0px 50px #dcdcdc;
+}
+
+.questionsBox {
+    box-shadow: 0px 0px 10px #dcdcdc;
+}
+
+.addressBox {
+    margin-top: 20px;
+    vertical-align: text-top;
+    margin-left: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    background-color: #ffffff;
+}
+
+.address {
+    width: 45px;
+    height: 20px;
+    float: right;
+    text-align: center;
+    color: white;
+    background-color: #2196f3;
+    font-style: normal;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.changeButton {
+    margin-top: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #2196f3;
+}
+
+.addressName {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 24px;
+    font-size: 16px;
+    overflow: hidden;
+    line-height: 24px;
+}
+
+.address, .addressName, .addressInfo, .changeButton {
+    margin-left: 20px;
+}
+
+.addressInfo {
+    font-size: 15px;
+    margin-top: 20px;
+    color: #adadad;
+}
+
+
+.addressForm {
+    margin: 15px;
+}

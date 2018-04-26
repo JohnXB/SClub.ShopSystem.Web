@@ -1,0 +1,952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SClub.ShopSystem.WebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressInfomation">
+          <Key>
+            <PropertyRef Name="InfoId" />
+          </Key>
+          <Property Name="InfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Consignee" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminRecord">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RecordName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="RecordTime" Type="date" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="GoodsId" Type="int" />
+        </EntityType>
+        <EntityType Name="Carousel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Img" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GoodsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodsId" />
+          </Key>
+          <Property Name="GoodsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GoodsStyle" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="GoodsIntro" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GoodsCount" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="SalesCount" Type="int" Nullable="false" />
+          <Property Name="SaleTime" Type="datetime" Nullable="false" />
+          <Property Name="IfSale" Type="bit" Nullable="false" />
+          <Property Name="PurchasePrice" Type="int" Nullable="false" />
+          <Property Name="Img" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GoodsImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Img" Type="nvarchar(max)" />
+          <Property Name="GoodsId" Type="int" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fatherId" Type="int" Nullable="false" />
+          <Property Name="menuName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="url" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="SalesCount" Type="int" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime" />
+          <Property Name="OrderState" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GoodsId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Consignee" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeliveryTime" Type="datetime" />
+          <Property Name="ReceiptGoodsTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolePermissions">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GoodsId" Type="int" Nullable="false" />
+          <Property Name="GoodsCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPermissions">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+          <Property Name="UserImg" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ADDRESSI_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AddressInfomation" Type="Self.AddressInfomation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AddressInfomation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminRecord_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="AdminRecord" Type="Self.AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminRecord_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="AdminRecord" Type="Self.AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminRecord_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdminRecord" Type="Self.AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAROUSEL_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Carousel" Type="Self.Carousel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="Carousel">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GOODSIMG_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="GoodsImg" Type="Self.GoodsImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="GoodsImg">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLEPERM_REFERENCE_PERMISSI">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
+          <End Role="RolePermissions" Type="Self.RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="PermissionId" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLEPERM_REFERENCE_ROLES">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="RolePermissions" Type="Self.RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHOPPING_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHOPPING_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERPERM_REFERENCE_PERMISSI">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
+          <End Role="UserPermissions" Type="Self.UserPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="PermissionId" />
+            </Principal>
+            <Dependent Role="UserPermissions">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERPERM_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserPermissions" Type="Self.UserPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPermissions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERROLE_REFERENCE_ROLES">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERROLE_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SClubShopSystemWebModelStoreContainer">
+          <EntitySet Name="AddressInfomation" EntityType="Self.AddressInfomation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminRecord" EntityType="Self.AdminRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carousel" EntityType="Self.Carousel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsImg" EntityType="Self.GoodsImg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPermissions" EntityType="Self.UserPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ADDRESSI_REFERENCE_USERS" Association="Self.FK_ADDRESSI_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AddressInfomation" EntitySet="AddressInfomation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminRecord_Goods" Association="Self.FK_AdminRecord_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminRecord_Order" Association="Self.FK_AdminRecord_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminRecord_Users" Association="Self.FK_AdminRecord_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAROUSEL_REFERENCE_GOODS" Association="Self.FK_CAROUSEL_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Carousel" EntitySet="Carousel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GOODSIMG_REFERENCE_GOODS" Association="Self.FK_GOODSIMG_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsImg" EntitySet="GoodsImg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Goods" Association="Self.FK_Order_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Users" Association="Self.FK_Order_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLEPERM_REFERENCE_PERMISSI" Association="Self.FK_ROLEPERM_REFERENCE_PERMISSI">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLEPERM_REFERENCE_ROLES" Association="Self.FK_ROLEPERM_REFERENCE_ROLES">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHOPPING_REFERENCE_GOODS" Association="Self.FK_SHOPPING_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHOPPING_REFERENCE_USERS" Association="Self.FK_SHOPPING_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERPERM_REFERENCE_PERMISSI" Association="Self.FK_USERPERM_REFERENCE_PERMISSI">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="UserPermissions" EntitySet="UserPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERPERM_REFERENCE_USERS" Association="Self.FK_USERPERM_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPermissions" EntitySet="UserPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERROLE_REFERENCE_ROLES" Association="Self.FK_USERROLE_REFERENCE_ROLES">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERROLE_REFERENCE_USERS" Association="Self.FK_USERROLE_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SClub.ShopSystem.WebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AddressInfomation">
+          <Key>
+            <PropertyRef Name="InfoId" />
+          </Key>
+          <Property Name="InfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Consignee" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ADDRESSI_REFERENCE_USERS" FromRole="AddressInfomation" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Carousel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_CAROUSEL_REFERENCE_GOODS" FromRole="Carousel" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodsId" />
+          </Key>
+          <Property Name="GoodsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsStyle" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsIntro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsCount" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="SalesCount" Type="Int32" Nullable="false" />
+          <Property Name="SaleTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IfSale" Type="Boolean" Nullable="false" />
+          <Property Name="PurchasePrice" Type="Int32" Nullable="false" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carousel" Relationship="Self.FK_CAROUSEL_REFERENCE_GOODS" FromRole="Goods" ToRole="Carousel" />
+          <NavigationProperty Name="GoodsImg" Relationship="Self.FK_GOODSIMG_REFERENCE_GOODS" FromRole="Goods" ToRole="GoodsImg" />
+          <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_SHOPPING_REFERENCE_GOODS" FromRole="Goods" ToRole="ShoppingCart" />
+          <NavigationProperty Name="Order" Relationship="SClub.ShopSystem.WebModel.FK_Order_Goods" FromRole="Goods" ToRole="Order" />
+          <NavigationProperty Name="AdminRecord" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Goods" FromRole="Goods" ToRole="AdminRecord" />
+        </EntityType>
+        <EntityType Name="GoodsImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GoodsId" Type="Int32" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_GOODSIMG_REFERENCE_GOODS" FromRole="GoodsImg" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fatherId" Type="Int32" Nullable="false" />
+          <Property Name="menuName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="SalesCount" Type="Int32" Nullable="false" />
+          <Property Name="OrderTime" Type="DateTime" Precision="3" />
+          <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Consignee" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryTime" Type="DateTime" Precision="3" />
+          <Property Name="ReceiptGoodsTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Goods" Relationship="SClub.ShopSystem.WebModel.FK_Order_Goods" FromRole="Order" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="SClub.ShopSystem.WebModel.FK_Order_Users" FromRole="Order" ToRole="Users" />
+          <NavigationProperty Name="AdminRecord" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Order" FromRole="Order" ToRole="AdminRecord" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Roles" Relationship="Self.RolePermissions" FromRole="Permissions" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="Self.UserPermissions" FromRole="Permissions" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Permissions" Relationship="Self.RolePermissions" FromRole="Roles" ToRole="Permissions" />
+          <NavigationProperty Name="Users" Relationship="Self.UserRoles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <Property Name="GoodsCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_SHOPPING_REFERENCE_GOODS" FromRole="ShoppingCart" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_SHOPPING_REFERENCE_USERS" FromRole="ShoppingCart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserImg" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AddressInfomation" Relationship="Self.FK_ADDRESSI_REFERENCE_USERS" FromRole="Users" ToRole="AddressInfomation" />
+          <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_SHOPPING_REFERENCE_USERS" FromRole="Users" ToRole="ShoppingCart" />
+          <NavigationProperty Name="Permissions" Relationship="Self.UserPermissions" FromRole="Users" ToRole="Permissions" />
+          <NavigationProperty Name="Roles" Relationship="Self.UserRoles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Order" Relationship="SClub.ShopSystem.WebModel.FK_Order_Users" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="AdminRecord" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Users" FromRole="Users" ToRole="AdminRecord" />
+        </EntityType>
+        <Association Name="FK_ADDRESSI_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AddressInfomation" Type="Self.AddressInfomation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AddressInfomation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAROUSEL_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Carousel" Type="Self.Carousel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="Carousel">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GOODSIMG_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="GoodsImg" Type="Self.GoodsImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="GoodsImg">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHOPPING_REFERENCE_GOODS">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHOPPING_REFERENCE_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolePermissions">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+        </Association>
+        <Association Name="UserPermissions">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <Association Name="UserRoles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressInfomation" EntityType="Self.AddressInfomation" />
+          <EntitySet Name="Carousel" EntityType="Self.Carousel" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="GoodsImg" EntityType="Self.GoodsImg" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_ADDRESSI_REFERENCE_USERS" Association="Self.FK_ADDRESSI_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AddressInfomation" EntitySet="AddressInfomation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAROUSEL_REFERENCE_GOODS" Association="Self.FK_CAROUSEL_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Carousel" EntitySet="Carousel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GOODSIMG_REFERENCE_GOODS" Association="Self.FK_GOODSIMG_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsImg" EntitySet="GoodsImg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHOPPING_REFERENCE_GOODS" Association="Self.FK_SHOPPING_REFERENCE_GOODS">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHOPPING_REFERENCE_USERS" Association="Self.FK_SHOPPING_REFERENCE_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="RolePermissions" Association="Self.RolePermissions">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="UserPermissions" Association="Self.UserPermissions">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserRoles" Association="Self.UserRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Goods" Association="SClub.ShopSystem.WebModel.FK_Order_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Users" Association="SClub.ShopSystem.WebModel.FK_Order_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <EntitySet Name="AdminRecord" EntityType="SClub.ShopSystem.WebModel.AdminRecord" />
+          <AssociationSet Name="FK_AdminRecord_Goods" Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminRecord_Order" Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminRecord_Users" Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdminRecord" EntitySet="AdminRecord" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Order_Goods">
+          <End Type="SClub.ShopSystem.WebModel.Goods" Role="Goods" Multiplicity="1" />
+          <End Type="SClub.ShopSystem.WebModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Users">
+          <End Type="SClub.ShopSystem.WebModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="SClub.ShopSystem.WebModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdminRecord">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RecordName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RecordTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="GoodsId" Type="Int32" />
+          <NavigationProperty Name="Goods" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Goods" FromRole="AdminRecord" ToRole="Goods" />
+          <NavigationProperty Name="Order" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Order" FromRole="AdminRecord" ToRole="Order" />
+          <NavigationProperty Name="Users" Relationship="SClub.ShopSystem.WebModel.FK_AdminRecord_Users" FromRole="AdminRecord" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_AdminRecord_Goods">
+          <End Type="SClub.ShopSystem.WebModel.Goods" Role="Goods" Multiplicity="0..1" />
+          <End Type="SClub.ShopSystem.WebModel.AdminRecord" Role="AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminRecord_Order">
+          <End Type="SClub.ShopSystem.WebModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="SClub.ShopSystem.WebModel.AdminRecord" Role="AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminRecord_Users">
+          <End Type="SClub.ShopSystem.WebModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="SClub.ShopSystem.WebModel.AdminRecord" Role="AdminRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AdminRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SClubShopSystemWebModelStoreContainer" CdmEntityContainer="Entities2">
+          <EntitySetMapping Name="AddressInfomation">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.AddressInfomation">
+              <MappingFragment StoreEntitySet="AddressInfomation">
+                <ScalarProperty Name="InfoId" ColumnName="InfoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carousel">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Carousel">
+              <MappingFragment StoreEntitySet="Carousel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+                <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
+                <ScalarProperty Name="GoodsStyle" ColumnName="GoodsStyle" />
+                <ScalarProperty Name="GoodsIntro" ColumnName="GoodsIntro" />
+                <ScalarProperty Name="GoodsCount" ColumnName="GoodsCount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SalesCount" ColumnName="SalesCount" />
+                <ScalarProperty Name="SaleTime" ColumnName="SaleTime" />
+                <ScalarProperty Name="IfSale" ColumnName="IfSale" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsImg">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.GoodsImg">
+              <MappingFragment StoreEntitySet="GoodsImg">
+                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="fatherId" ColumnName="fatherId" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SalesCount" ColumnName="SalesCount" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+                <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+                <ScalarProperty Name="ReceiptGoodsTime" ColumnName="ReceiptGoodsTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Permissions">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCart">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.ShoppingCart">
+              <MappingFragment StoreEntitySet="ShoppingCart">
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+                <ScalarProperty Name="GoodsCount" ColumnName="GoodsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="UserImg" ColumnName="UserImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RolePermissions" TypeName="SClub.ShopSystem.WebModel.RolePermissions" StoreEntitySet="RolePermissions">
+            <EndProperty Name="Permissions">
+              <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserPermissions" TypeName="SClub.ShopSystem.WebModel.UserPermissions" StoreEntitySet="UserPermissions">
+            <EndProperty Name="Permissions">
+              <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserRoles" TypeName="SClub.ShopSystem.WebModel.UserRoles" StoreEntitySet="UserRoles">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="AdminRecord">
+            <EntityTypeMapping TypeName="SClub.ShopSystem.WebModel.AdminRecord">
+              <MappingFragment StoreEntitySet="AdminRecord">
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="RecordTime" ColumnName="RecordTime" />
+                <ScalarProperty Name="RecordName" ColumnName="RecordName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

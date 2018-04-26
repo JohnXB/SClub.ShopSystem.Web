@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "新品上架";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+<link href="~/Css/MenuJump/Putaway.css" rel="stylesheet" />
+<script src="~/Js/jquery-1.8.3.min.js"></script>
+<script src="~/Js/MenuJump/Putaway.js"></script>
+@if ((string)TempData["ifPutaway"] == "上架成功")
+{
+    <script>alert("上架成功")</script>
+}
+@if ((string)TempData["ifPutaway"] == "上架失败")
+{
+    <script>alert("上架失败")</script>
+}
+<h1></h1>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">新品上架</legend>
+</fieldset>
+<div class="form-bak">
+    <form method="post" action="/Backstage/PutawaySave" onsubmit="return v_style();" enctype="multipart/form-data">
+        <div class="top">
+            <div class="line" id="line_goodsName" style="margin-top:50px;">
+                <strong>商品名&nbsp;&nbsp;</strong>
+                <input type="text" name="goods[GoodsName]" id="goodsName" onblur="v_goodsName();" onkeyup="v_goodsName();" style="color:#000;" />
+                <span class="tips">只能由数字、文字或下划线组成</span>
+                <div id="goodsNameTip" class="Error-info"></div>
+            </div>
+            <div class="line" id="line_price">
+                <strong>商品售价</strong>
+                <input type="text" name="goods[Price]" id="price" onblur="v_price(); v_purchasePrice();" onkeyup="v_price();v_purchasePrice();" style="color:#000;" />
+                <span class="tips">只能输入数字</span>
+                <div id="priceTip" class="Error-info"></div>
+            </div>
+            <div class="line" id="line_purchasePrice">
+                <strong>商品成本</strong>
+                <input type="text" name="goods[PurchasePrice]" id="purchasePrice" onblur="v_purchasePrice();" onkeyup="v_purchasePrice();" style="color:#000;" />
+                <span class="tips">只能输入数字</span>
+                <div id="purchasePriceTip" class="Error-info"></div>
+            </div>
+
+            <div class="line" id="line_style">
+                <strong>商品类型</strong>
+                <input type="radio" name="goods[GoodsStyle]" class="style" value="游戏" style="color:#000;" />游戏
+                <input type="radio" name="goods[GoodsStyle]" class="style" value="装备" style="color:#000;" />装备
+                <input type="radio" name="goods[GoodsStyle]" class="style" value="周边" style="color:#000;" />周边
+                <span class="tips">单选</span>
+                <div id="styleTip" class="Error-info"></div>
+            </div>
+            <div class="line" id="line_img">
+                <strong>商品图片</strong>
+                <span class="tips">商品宣传图</span>
+                <div id="preview">
+                    <img id="imghead" border="0" src="~/Img/Putaway.png" width="90" height="90" onclick="$('#previewImg').click();">
+                </div>
+                <input type="file" name="goods[Img]" style="display: none;" onchange="previewImage(this)" id="previewImg">
+                <div id="none"></div>
+
+            </div>
+            <div class="line" id="line_intro">
+                <strong>商品简介</strong>
+                <textarea name="goods[GoodsIntro]" id="intro" onblur="v_intro();" onkeyup="v_intro();" style="color:#000;"></textarea>
+                <span class="tips">不少于10字</span>
+                <div id="introTip" class="Error-info"></div>
+            </div>
+        </div>
+        <div class="bottom">
+            <input type="submit" id="submit" value="上架" disabled="disabled" />
+        </div>
+    </form>
+</div>
+<script src="~/Js/PreviewImage.js"></script>

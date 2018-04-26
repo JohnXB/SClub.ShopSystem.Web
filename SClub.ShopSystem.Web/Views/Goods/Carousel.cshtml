@@ -1,0 +1,45 @@
+﻿@model  IEnumerable<SClub.ShopSystem.Web.Models.CarouselModel>
+
+
+<link href="~/Css/Goods/Carousel.css" rel="stylesheet" />
+
+
+
+<div class="content" style="width:100%;height:480px;margin:30px auto;overflow:hidden;">
+    <div id="slider">
+        @foreach (var img in Model)
+            {
+            <div >
+               <img src="@img.Img" style="width:100%;height:480px;" />
+            </div>
+        }
+
+
+    </div>
+
+</div>
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script src="~/Js/Goods/vmc.slider.full.min.js"></script>
+<script type="text/javascript">
+	/* 配置选项 */
+	var options = {
+	    width: window.screen.availWidth,
+		height: 450, // 高度
+		gridCol: 10, // 网格列数
+		gridRow: 5, // 网格行数
+	    navButton:true,
+		gridVertical: 20, // 栅格列数
+		gridHorizontal: 10, // 栅格行数
+		autoPlay: true, // 自动播放
+		ascending: true, // 图片按照升序播放
+		effects: [ // 使用的转场动画效果
+			'fade',
+		],
+		
+		duration: 4000, // 图片停留时长（毫秒）
+		speed: 900, // 转场效果时长（毫秒）
+	
+	};
+	/* 创建轮播效果 */
+	$('#slider').vmcSlider(options);
+</script>

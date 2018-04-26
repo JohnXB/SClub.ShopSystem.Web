@@ -1,0 +1,47 @@
+﻿
+.PersonInfo {
+    width: 100%;
+    margin: auto;
+}
+
+    .PersonInfo .PersonInfo_right #useImg {
+        height: 40px;
+        width: 40px;
+        margin-right: 5px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .PersonInfo .PersonInfo_right {
+        vertical-align: middle;
+        display: inline-block;
+        width: 40%;
+    }
+
+    .PersonInfo .PersonInfo_left {
+        display: inline-block;
+        width: 40%;
+        vertical-align: middle;
+    }
+
+        .PersonInfo .PersonInfo_left p {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .PersonInfo .PersonInfo_left .UserInfo-Content {
+            font-size: 20px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        .PersonInfo .PersonInfo_left .UserInfo-Edit {
+            cursor: pointer;
+            margin-left: 10px;
+            color: #53a4f4;
+            font-size: 14px;
+        }
+
+        .iLabel{
+            width:100px;
+        }

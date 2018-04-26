@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+   
+    @Styles.Render("~/Css/Backstage/Layout/bootstrap.min.css")
+    @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
+    @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css")
+    @Styles.Render("~/Css/Backstage/Layout/AdminLTE.min.css")
+    @Styles.Render("~/Css/Backstage/Layout/_all-skins.min.css")
+    @Styles.Render("~/Js/layui/css/layui.css")
+    @Scripts.Render("~/Js/Backstage/Layout/jquery-2.2.3.min.js")
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini" style="height:1000px;padding:0">
+    <div class="wrapper">
+
+        
+        @Html.Partial("~/Views/Backstage/_Header.cshtml")
+        @Html.Partial("~/Views/Backstage/_SideMenu.cshtml")
+        <div class="content-wrapper"style="height:1000px;padding:0;margin-top:0px;">
+            @RenderBody()
+        </div>
+            
+        </div>
+
+
+    
+    <!-- jQuery UI 1.11.4 -->
+    @Scripts.Render("~/Js/Backstage/Layout/bootstrap.min.js")
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js")
+    @Scripts.Render("~/Js/MenuJump/public.js")
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js")
+
+    @Scripts.Render("~/Js/Backstage/Layout/app.min.js")
+    @Scripts.Render("~/Js/Backstage/Layout/demo.js")
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- Bootstrap 3.3.6 -->
+
+
+</body>
+</html>

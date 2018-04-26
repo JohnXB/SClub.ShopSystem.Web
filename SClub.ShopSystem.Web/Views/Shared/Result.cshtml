@@ -1,0 +1,35 @@
+﻿@model SClub.ShopSystem.Web.Models.Result
+
+@{ 
+    Layout = null;
+    ViewBag.Title = "处理结果";
+}
+    <script src="~/Js/jquery-1.11.0.min.js"></script>
+    <script src="~/Js/layui/layui.js"></script>
+    <script>
+        layui.use('layer', function () {
+            var layer = layui.layer;
+        });
+        window.onload = function result() {
+
+            layer.open({
+                title: "提示"
+        , type: 1
+        , content: $('#show')
+        , shade: 0.3
+        , btnAlign: 'c' //按钮居中
+        , move: false
+            });
+        }
+        function returnView(url) {
+            window.location.href = url
+        }
+    </script>
+
+<div id="show">
+    <div>@Model.result</div>
+    <div style="text-align:center;margin-bottom:10px;">
+        <button class="layui-btn layui-btn-normal" value="@Model.url" onclick="returnView(value)">确定</button>
+    </div>
+</div>
+

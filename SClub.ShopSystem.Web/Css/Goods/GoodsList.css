@@ -1,0 +1,71 @@
+﻿body {
+    background: url("http://www.shejidaren.com/wp-content/themes/Daren/images/bg.jpg") ;
+}
+.iDiv {
+    width: 60%;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.serch_form {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+.iBtn {
+    display: inline-block;
+}
+
+.serch-title{
+    width:950px;
+    
+    margin:auto;
+    margin-top:10px;
+}
+.goodsList{
+            width:956px;
+            min-height:800px;
+            max-height:800px;
+            margin:auto;
+            text-align:center;
+        }
+
+        .goodsList .goods-box{
+            float:left;
+            margin-top:22px;
+            margin-right:17px;
+            border:1px solid #ededed;
+            width:220px;
+            height:360px;
+        }
+        .goodsList .goods-Price{
+            color:#ff0000;
+            font-size:20px;
+            margin-right:20%;
+        }
+        .goodsList .goods-box .goods-img img{
+            width:220px;
+            height:280px;
+        }
+        .goodsList .goods-name{
+            color:#3e3d3a;
+            font-size:25px;
+            text-align:center;
+            margin-top:5px;
+        }
+
+       #paging{
+           margin:auto;
+           text-align:center;
+           
+       }
+       .notFount{
+           margin-top:50px;
+         color: grey;
+        font-size: 1.3em;
+        text-align: center;
+        margin:auto;
+       }

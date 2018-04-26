@@ -1,0 +1,31 @@
+﻿
+@model List<SClub.ShopSystem.Web.Models.MenuListModel>
+@{ 
+    var a = Model;
+}
+@foreach (var menu in Model)
+{
+    <li class="treeview">
+        <a href="@menu.url">
+            <i class="fa fa-circle-o"></i> <span>@menu.menuName</span>
+            <span class="pull-right-container">
+                @if (menu.children.Count != 0)
+                {
+                    <i class="fa fa-angle-left pull-right"></i>
+                }
+
+            </span>
+        </a>
+        @if (menu.children.Count != 0)
+        {
+            <ul class="treeview-menu">
+                @Html.Partial("SideBar", menu.children)
+            </ul>
+        }
+
+    </li>
+}
+
+
+
+

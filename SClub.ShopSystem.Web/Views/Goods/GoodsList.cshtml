@@ -1,0 +1,26 @@
+﻿@model SClub.ShopSystem.Web.Models.Result
+@{
+    ViewBag.Title = "商品列表";
+    Layout = "~/Views/Goods/_GoodsLayout.cshtml";
+}
+<link href="~/Css/Goods/GoodsList.css" rel="stylesheet" />
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<div id="style" style="display:none;">@Model.result</div>
+<div id="head">&nbsp;</div>
+<form class="layui-form serch_form" method="post" action="/Goods/Serch">
+    <div class="layui-form-item iDiv">
+        <input type="text" id="serch" name="serch" required lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
+    </div>
+    <button class="layui-btn iBtn" >
+        <i class="layui-icon">&#xe615;</i>
+    </button>
+</form>
+
+
+<div class="goodsList" id="goods_List">
+    
+</div>
+<div id="paging"></div>
+<script src="~/Js/Goods/GoodsList.js"></script>
+
+

@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "信息统计";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+<script src="~/Js/MenuJump/echarts.common.min.js"></script>
+<script src="~/Js/MenuJump/echarts.js"></script>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">信息统计</legend>
+</fieldset>
+<div style="display:flex;flex-direction:row">
+    <div id="pie" style="width: 900px;height:400px;"></div>
+    <div id="bar" style="width: 900px;height:400px;"></div>
+    <div id="symbol" style="width: 900px;height:400px;"></div>
+</div>
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+    var pie = echarts.init(document.getElementById('pie'));
+    var bar = echarts.init(document.getElementById('bar'));
+    var pieData = [
+                        { value: 235, name: '视频广告' },
+                        { value: 274, name: '联盟广告' },
+                        { value: 310, name: '邮件营销' },
+                        { value: 335, name: '直接访问' },
+                        { value: 400, name: '搜索引擎' }
+    ]
+    pie.setOption({
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    data: pieData,
+                    roseType: 'angle'
+                }
+            ]
+        })
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '销售条形统计图'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        bar.setOption(option);
+
+       
+        var symbolSize = 20;
+        var data = [[15, 0], [-50, 10], [-56.5, 20], [-46.5, 30], [-22.1, 40]];
+
+        var symbol = echarts.init(document.getElementById('symbol'));
+
+        symbol.setOption({
+            tooltip: {
+                triggerOn: 'none',
+                formatter: function (params) {
+                    return 'X: ' + params.data[0].toFixed(2) + '<br>Y: ' + params.data[1].toFixed(2);
+                }
+            },
+            xAxis: {
+                min: -100,
+                max: 80,
+                type: 'value',
+                axisLine: { onZero: false }
+            },
+            yAxis: {
+                min: -30,
+                max: 60,
+                type: 'value',
+                axisLine: { onZero: false }
+            },
+            series: [
+                {
+                    id: 'a',
+                    type: 'line',
+                    smooth: true,
+                    symbolSize: symbolSize,
+                    data: data
+                }
+            ],
+        });
+
+        symbol.setOption({
+            graphic: echarts.util.map(data, function (item, dataIndex) {
+                return {
+                    type: 'circle',
+                    position: symbol.convertToPixel('grid', item),
+                    shape: {
+                        r: symbolSize / 2
+                    },
+                    invisible: true,
+                    draggable: true,
+                    ondrag: echarts.util.curry(onPointDragging, dataIndex),
+                    onmousemove: echarts.util.curry(showTooltip, dataIndex),
+                    onmouseout: echarts.util.curry(hideTooltip, dataIndex),
+                    z: 100
+                };
+            })
+        });
+
+        window.addEventListener('resize', function () {
+            symbol.setOption({
+                graphic: echarts.util.map(data, function (item, dataIndex) {
+                    return {
+                        position: symbol.convertToPixel('grid', item)
+                    };
+                })
+            });
+        });
+
+        function showTooltip(dataIndex) {
+            symbol.dispatchAction({
+                type: 'showTip',
+                seriesIndex: 0,
+                dataIndex: dataIndex
+            });
+        }
+
+        function hideTooltip(dataIndex) {
+            symbol.dispatchAction({
+                type: 'hideTip'
+            });
+        }
+
+        function onPointDragging(dataIndex, dx, dy) {
+            data[dataIndex] = symbol.convertFromPixel('grid', this.position);
+            symbol.setOption({
+                series: [{
+                    id: 'a',
+                    data: data
+                }]
+            });
+        }
+</script>

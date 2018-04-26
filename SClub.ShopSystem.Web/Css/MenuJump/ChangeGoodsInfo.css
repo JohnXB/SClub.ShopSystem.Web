@@ -1,0 +1,16 @@
+﻿body {
+}
+.iForm {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+.iLabel {
+    width: auto;
+    text-align: center;
+    margin: auto;
+    font-size:20px;
+}
+.iInput{
+    width:800px;
+}

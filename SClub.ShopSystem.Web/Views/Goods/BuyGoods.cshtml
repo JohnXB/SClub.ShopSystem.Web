@@ -1,0 +1,130 @@
+﻿@model SClub.ShopSystem.Web.Models.OrderDetails
+
+@{
+    Layout = "~/Views/Goods/_GoodsLayout.cshtml";
+    ViewBag.Title = "确认订单";
+}
+<link href="~/Css/User/BuyGoods.css" rel="stylesheet" />
+
+<div id="head">&nbsp;</div>
+<div class="specific">
+    <div class="select-address">
+        <div class="title">
+            <div id="title-left">
+                <div class="detail">确认收货地址</div>
+            </div>
+
+        </div>
+        <div class="address-list">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="margin-top:10px;">寄送至</label>
+                    <div class="layui-input-block">
+                        @foreach (var address in Model.AddressList)
+                        {
+
+                            <input type="radio" name="order[Address]"lay-ignore value="@address.Address" title="" onclick="GetAddressInfo('@address.Tel','@address.Consignee',value)"style="margin-top:20px;"><span class="address-show">@(address.Address)@(address.Consignee)收</span>
+                            <br />
+
+
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="add-address">
+            <a href="/User/AddressInfo">+使用新地址</a>
+        </div>
+    </div>
+    <div class="check-indent">
+        <div class="title">确认订单信息</div>
+        <div class="table">
+
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>总价</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>@Model.GoodsId</td>
+                        <td><img src="@Model.Img" style="height:30px;width:30px;"> @Model.GoodsName</td>
+                        <td>@Model.Price</td>
+                        <td>@Model.BuyCount</td>
+                        <td>@(Model.BuyCount * Model.Price)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="form">
+        <div class="form-right">
+            <form method="post" action="/User/SaveOrder" onsubmit="return ifCanSubmit();">
+                <div>
+                    <input type="hidden" name="orderModel[SalesCount]" value="@Model.BuyCount" />
+                    <input type="hidden" name="orderModel[GoodsId]" value="@Model.GoodsId" />
+                    <input type="hidden" name="orderModel[GoodsName]" value="@Model.GoodsName" />
+                    <input type="hidden" name="orderModel[Price]" value="@Model.Price" />
+                    <input type="hidden" name="orderModel[UserId]" value="@Model.UserId" />
+                    <input type="hidden" name="orderModel[Consignee]" id="consignee" value="" />
+                    <input type="hidden" name="orderModel[Tel]" id="tel" value="" />
+                    <input type="hidden" name="orderModel[Address]" id="orderAddress" value="" />
+                </div>
+
+                <div class="box">
+                    <div class="box-right">实付款：<span class="price">￥@(Model.BuyCount * Model.Price)</span></div>
+                    <div class="box-center">寄送至：<span value="" id="address"></span></div>
+                    <div class="box-bottom">收货人：<span value="" id="people"></span></div>
+                </div>
+                <div class="button">
+                    <button type="submit" id="submit">提交订单</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script>
+    layui.use('form','layer', function () {
+        var form = layui.form();
+        var layer = layui.layer;
+        form.on('radio()', function (data) {
+            console.log(data.elem); //得到radio原始DOM对象
+            layer.msg(data.value); //被点击的radio的value值
+        });
+    });
+    
+    function GetAddressInfo(tel, consignee, address) {
+        document.getElementById("address").innerText = address;
+        document.getElementById("people").innerText = consignee;
+        document.getElementById("orderAddress").value = address;
+        document.getElementById("consignee").value = consignee;
+        document.getElementById("tel").value = tel;
+    }
+    function ifCanSubmit() {
+        var val = $('input:radio[name="order[Address]"]:checked').val();
+        if (val == null) {
+            alert("请选择收货地址！");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
+
+
+

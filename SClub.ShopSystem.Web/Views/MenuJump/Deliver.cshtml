@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "后台待发货";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+<link href="~/Css/MenuJump/Table.css" rel="stylesheet" />
+@using SClub.ShopSystem.Web.Models;
+@{
+    AdminModel user = (AdminModel)Session["admin"];
+}
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">待发货</legend>
+</fieldset>
+<div style="width:98%;margin:auto;margin-bottom:20px;">
+    <button class="layui-btn layui-btn-normal" value="游戏" onclick="ChangeTable(value);">精品游戏</button>
+    <button class="layui-btn layui-btn-normal" value="装备" onclick="ChangeTable(value); ">豪华装备</button>
+    <button class="layui-btn layui-btn-normal" value="周边" onclick="ChangeTable(value);">精美周边</button>
+</div>
+
+
+
+<form action="/Backstage/Order" method="post">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr id="tableHead">
+                <th>订单号</th>
+                <th>商品名</th>
+                <th>数量</th>
+                <th>总价</th>
+                <th>下单时间</th>
+                <th>买家</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+    </table>
+</form>
+<div id="paging" style="text-align:center">
+</div>
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/MenuJump/DeliverAjax.js"></script>

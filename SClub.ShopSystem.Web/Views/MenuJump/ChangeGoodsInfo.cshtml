@@ -1,0 +1,107 @@
+﻿@model SClub.ShopSystem.Web.Models.GoodsModel
+@{
+    ViewBag.Title = "修改商品信息";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+
+
+<link href="~/Css/MenuJump/ChangeGoodsInfo.css" rel="stylesheet" />
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">修改商品信息</legend>
+</fieldset>
+<form method="post" class="layui-form iForm" action="/Backstage/ChangeGoodsInfo"onsubmit="return checkChange()" enctype="multipart/form-data">
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">商&nbsp;品&nbsp;名&nbsp;：&nbsp;</label>
+        <div class="layui-input-block ">
+            <input type="text" name="goods[GoodsName]" value="@Model.GoodsName" required lay-verify="required|name" placeholder="请输入标题" autocomplete="off" class="layui-input iInput">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">商品售价：</label>
+        <div class="layui-input-block ">
+            <input type="text" name="goods[Price]" value="@Model.Price" id="priceNum" required lay-verify="required|number" placeholder="请输入标题" autocomplete="off" class="layui-input iInput">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">商品成本：</label>
+        <div class="layui-input-block ">
+            <input type="text" name="goods[PurchasePrice]"id="PurpriceNum" value="@Model.PurchasePrice" required lay-verify="required|number|checkNumber" placeholder="请输入标题" autocomplete="off" class="layui-input iInput">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">商品类型：</label>
+        <div class="layui-input-block" style="font-size:20px;">
+            <input type="hidden" name="goods[GoodsStyle]" class="style" value="@Model.GoodsStyle" style="color:#000;" />@Model.GoodsStyle
+            
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">商品图片：</label>
+        <div id="preview">
+            <img id="imghead" border="0" src="@Model.Img" width="90" height="90" onclick="$('#previewImg').click();">
+        </div>
+        <input type="file" name="goodsImg" style="display: none;" onchange="previewImage(this)" id="previewImg">
+        <input type="hidden" name="goods[Img]"value="@Model.Img" class="style" />
+        <input type="hidden" name="goods[GoodsId]" value="@Model.GoodsId" class="style" />
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label iLabel">商品简介：</label>
+        <div class="layui-input-block ">
+            <textarea  name="goods[GoodsIntro]"id="intro" placeholder="请输入内容" class="layui-textarea iInput">@Model.GoodsIntro</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">提交修改</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/PreviewImage.js"></script>
+<script>
+    layui.use('form', 'layer', function () {
+        var form = layui.form();
+        var layer = layui.layer;
+        form.verify({
+            name: function (value, item) { //value：表单的值、item：表单的DOM对象
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '名字不能有特殊字符';
+                }
+                if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                    return '名字首尾不能出现下划线\'_\'';
+                }
+                if (/^\d+\d+\d$/.test(value)) {
+                    return '名字不能全为数字';
+                }
+            }
+           
+            , checkNumber: function (value, item) {
+                var price = $('#priceNum').val()
+               if (parseInt(price) <= parseInt(value)) {
+                    return '成本必须小于售价'
+                }
+            }
+        });
+    });
+    function checkChange() {
+        var intro = $("#intro").val();
+        var price = $('#priceNum').val()
+        var PurpriceNum = $('#PurpriceNum').val()
+        if (parseInt(price) <= parseInt(PurpriceNum)) {
+            layer.msg("成本必须小于售价")
+            return false;
+        }
+        if (intro.length < 10) {
+            layer.msg("简介必须大于10位")
+            return false;
+        }
+
+    }
+</script>

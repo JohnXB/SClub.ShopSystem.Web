@@ -1,0 +1,12 @@
+﻿body {
+}
+h2{
+    margin-top:0px;
+    text-align:center;
+}
+.personInfo-div div{
+    margin:20px;
+}
+#preview{
+    display:inline-block;
+}

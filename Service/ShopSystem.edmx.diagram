@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51a7a9d4b9ad4b248242c83fdad1f972" Name="Diagram1">
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.AddressInfomation" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Carousel" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Goods" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.GoodsImg" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Menu" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Order" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Permissions" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Roles" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.ShoppingCart" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.Users" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_ADDRESSI_REFERENCE_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_CAROUSEL_REFERENCE_GOODS" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_GOODSIMG_REFERENCE_GOODS" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_SHOPPING_REFERENCE_GOODS" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_SHOPPING_REFERENCE_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.RolePermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.UserPermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_Order_Goods" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_Order_Users" />
+        <EntityTypeShape EntityType="SClub.ShopSystem.WebModel.AdminRecord" Width="1.5" PointX="10.5" PointY="7.375" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Goods" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Order" />
+        <AssociationConnector Association="SClub.ShopSystem.WebModel.FK_AdminRecord_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+﻿
+@using SClub.ShopSystem.Web.Models;
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Css/Goods/Login_model.css" rel="stylesheet" />
+<nav class="fh5co-nav" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2 text-left">
+                <div id="fh5co-logo"><a href="/Goods/Index">ESport<span>.</span></a></div>
+            </div>
+            <div class="col-xs-10 text-right menu-1">
+                <ul style="display:inline-block">
+                    <li class="active"><a href="/Goods/Index">主页</a></li>
+
+                    <li><a href="/Goods/GoodsList?style=游戏">精品游戏</a></li>
+                    <li><a href="/Goods/GoodsList?style=装备" value="装备">豪华装备</a></li>
+                    <li><a href="/Goods/GoodsList?style=周边" value="周边">精美周边</a></li>
+                    <li class="has-dropdown">
+                        <a href="/User/PersonCenter">个人中心</a>
+                        @*<ul class="dropdown">
+                                <li><a href="#">Web Design</a></li>
+                                <li><a href="#">eCommerce</a></li>
+                                <li><a href="#">Branding</a></li>
+                                <li><a href="#">API</a></li>
+                            </ul>*@
+                    </li>
+                    <li>
+
+                    </li>
+                    @*<li><a href="contact.html">Contact</a></li>*@
+                </ul>
+                @if (Session["user"] != null)
+                {
+                    var user = Session["user"] as UserModel;
+                    <img src="@user.UserImg" id="UserImg">
+                    <a>@user.Name</a>
+                    <a>,你好</a>
+                    <a href="#" onclick="Logout()" id="logout">退出</a>
+                }
+                else
+                {
+                    <span id="login">
+                        <a href="#" id="login_btn" onclick="Login_click()">登录</a>
+                        <a href="/Goods/Register" id="register">注册</a>
+                    </span>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<script src="~/Js/main.js"></script>
+<script src="~/Js/bootstrap.min.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/Goods/LoginAjax.js"></script>

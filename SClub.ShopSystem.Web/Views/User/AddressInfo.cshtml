@@ -1,0 +1,61 @@
+﻿@model List<SClub.ShopSystem.Web.Models.AddressInfo>
+@{
+    Layout = "~/Views/User/_UserLayout.cshtml";
+    ViewBag.Title = "个人中心-待发货";
+}
+
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Css/User/AddressInfo.css" rel="stylesheet" />
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>我的地址</legend>
+    <div>
+        <a onclick="addModal()">
+            <div class="addressBox addAddressBox">
+                <span class="addNewAddress">
+                    <i class="layui-icon"></i>
+                    <i>新建</i>
+                </span>
+            </div>
+        </a>
+        @foreach (var address in Model)
+        {
+
+            <div class="addressBox questionsBox">
+                <i class="address">地址</i>
+                <p class="addressName">@address.Address</p>
+                <p class="addressInfo">收货人：@address.Consignee </p>
+                <p class="addressInfo">手机号：@address.Tel </p>
+                <a onclick="ChangeInfo(@address.InfoId)"><p class="changeButton">删除</p></a>
+
+            </div>
+
+        }
+    </div>
+</fieldset>
+<form class="layui-form addressForm" id="addAddress_Modal" onsubmit="return false" style="display:none;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" required lay-verify="required" placeholder="请输入收货地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货人</label>
+        <div class="layui-input-block">
+            <input type="text" name="consignee" required lay-verify="required" placeholder="请输入收货人" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+            <input type="text" name="tel" required lay-verify="required|phone" placeholder="请输入收货人电话" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="AddAddressBtn()">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+        </div>
+    </div>
+</form>
+<script src="~/Js/User/AddressInfo.js"></script>

@@ -1,0 +1,33 @@
+﻿<link href="~/Css/HorizontalMenus.css" rel="stylesheet" />
+
+<div id="fh5co-services" class="fh5co-bg-section border-bottom">
+    <div class="row animate-box row-pb-md" id="welcome">
+        <div class="col-md-8 col-md-offset-2 text-left fh5co-heading">
+            <h2 style="margin-top:40px;">欢迎来到<a>ESPORT</a></h2>
+        </div>
+    </div>
+    <form method="post" action="/Goods/Serch">
+        <div class="field" id="searchform" style="width:1000px;margin-bottom:0px;margin-top:0px;">
+            <img src="~/Img/steam.png">
+            <input type="text" name="serch" id="searchterm" placeholder="请输入商品名！" />
+            <button type="submit" id="search">搜索</button>
+        </div>
+    </form>
+    <div class="menu">
+        <ul>
+            <li>@Html.ActionLink("首页", "GoodsList", new { style = "home" })</li>
+            <li><a href="/Goods/GoodsList?style=游戏">精品游戏</a></li>
+            <li><a href="/Goods/GoodsList?style=装备" value="装备">豪华装备</a></li>
+            <li><a href="/Goods/GoodsList?style=周边" value="周边">精美周边</a></li>
+        </ul>
+    </div>
+</div>
+    
+    
+
+    
+
+
+    <script src="~/Js/Goods/jquery.min.js"></script>
+
+

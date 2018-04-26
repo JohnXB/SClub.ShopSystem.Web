@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SClub.ShopSystem.Web.Models.CarouselModel>
+@{
+    ViewBag.Title = "商品推荐管理";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">商品推荐管理</legend>
+</fieldset>
+<div style="text-align:center">
+    @foreach (var img in Model)
+    {
+        <div class="site-demo-upload" style="text-align:center;">
+            <img id="@img.Id" src="@img.Img" width="800" height="200" style="margin-bottom:15px;" />
+            <div class="site-demo-upbar">
+                <input type="file" name="file"onclick="GetId(@img.Id)" class="layui-upload-file" >
+                
+               
+            </div>
+        </div>
+        
+    }
+</div>
+<script src="~/Js/layui/layui.js"></script>
+<script>
+    layui.use('element', function () {
+        var element = layui.element();
+    });
+    layui.use('upload', function () {
+        layui.upload({
+           
+          
+        });
+    });
+        
+    function GetId(id){
+        layui.use('upload', function () {
+            layui.upload({
+                url: '/Backstage/ChangeRecommendImg?id=' + id
+            
+              , method: 'post' //上传接口的http类型
+              
+              , before: function (input) {
+                  //返回的参数item，即为当前的input DOM对象
+                  console.log('文件上传中');
+                 
+              }
+              , success: function (res) {
+                  layer.open({
+                      title: '结果'
+                      , content: '修改成功'
+                      , yes: function (index, layero) {
+                          window.location.href = "/MenuJump/GoodsRecommend"
+                      }
+                      , cancel: function () {
+                          window.location.href = "/MenuJump/GoodsRecommend"
+                      }
+                  });
+              }
+
+            });
+        });
+        
+    }
+        
+    //修改图片
+    
+</script>

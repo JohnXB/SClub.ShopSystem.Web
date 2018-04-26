@@ -1,0 +1,78 @@
+﻿@model SClub.ShopSystem.Web.Models.UserModel
+@{
+    Layout = "~/Views/User/_UserLayout.cshtml";
+    ViewBag.Title = "个人中心";
+}
+
+
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Css/User/PersonCenter.css" rel="stylesheet" />
+    <div class="PersonInfo">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-bottom: 50px;">
+            <legend>个人信息</legend>
+        </fieldset>
+        <div class="PersonInfo_left">
+            <p>
+                <span class="UserInfo-Content" id="nickNameSuccess">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号 : <span id="UserAccount">@Model.Account</span></span>
+                @*<span class="UserInfo-Edit" onclick="ChangeNickName()">修改</span>*@
+            </p>
+            <p>
+                <span class="UserInfo-Content" id="nickNameSuccess">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称 : @Model.Name</span>
+               <span class="UserInfo-Edit" onclick="ChangeNickName()">修改</span>
+            </p>
+
+
+            <p>
+                <span class="UserInfo-Content">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码 : ******(不可见)</span>
+                <span class="UserInfo-Edit" onclick="ChangenEditPassword()">修改</span>
+            </p>
+            <p>
+                <span class="UserInfo-Content">创建时间 : @Model.CreationTime</span>
+                @*<span class="UserInfo-Edit" onclick="ChangenEditPassword()">修改</span>*@
+            </p>
+        </div>
+        <div class="PersonInfo_right">
+            <div class="site-demo-upload" style="text-align:center;">
+                <img id="LAY_demo_upload" src="@Model.UserImg" style="border-radius:50%;height:200px;width:200px;" />
+                <div class="site-demo-upbar">
+                    <input type="file" name="file" class="layui-upload-file" id="test">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+<div id="ChangePassword" style="display:none;margin:10px;">
+    <div class="layui-form-item iDiv">
+        <label class="layui-form-label iLabel">旧密码:</label>
+        <div class="layui-input-inline">
+            <input type="password" id="pass" name="pass" placeholder="请输入密码" required lay-verify="required|password" autocomplete="off" class="layui-input input">
+        </div>
+    </div>
+    <div class="layui-form-item iDiv">
+        <label class="layui-form-label iLabel">新密码:</label>
+        <div class="layui-input-inline">
+            <input type="password" id="newPass" name="newPass" placeholder="请输入密码" required lay-verify="required|password" autocomplete="off" class="layui-input input">
+        </div>
+    </div>
+    <div class="layui-form-item iDiv">
+        <label class="layui-form-label iLabel">确认密码:</label>
+        <div class="layui-input-inline">
+            <input type="password" name="checkNewPass" placeholder="请再次输入密码" autocomplete="off" class="layui-input input">
+        </div>
+    </div>
+    <div style="text-align:center;"><button lay-submit class="layui-btn"onclick="SubmitPasswordChange()" >提交</button></div>
+    
+</div>
+<div id="ChangeNickName" style="display:none;margin:10px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label iLabel">新昵称:</label>
+        <div class="layui-input-block">
+            <input type="text" name="nickName"  placeholder="请输入昵称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div style="text-align:center;"><button  class="layui-btn" onclick="SubmitNickNameChange()">提交</button></div>
+
+</div>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/User/PersonCenter.js"></script>

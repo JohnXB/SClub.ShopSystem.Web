@@ -1,0 +1,23 @@
+﻿body {
+    background-color: #ebebeb;
+}
+
+.center {
+    margin: auto;
+    width: 70%;
+    display:flex;
+    flex-direction:row;
+}
+
+.left {
+    
+    display: inline-block;
+    margin-right: 50px;
+    text-align: center;
+}
+
+
+.right{
+    width:85%;
+}
+

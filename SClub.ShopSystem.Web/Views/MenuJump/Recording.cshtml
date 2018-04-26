@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "工作日志";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+<link href="~/Css/MenuJump/Table.css" rel="stylesheet" />
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">工作日志</legend>
+</fieldset>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+        <tr id="tableHead">
+            <th>记录编号</th>
+            <th>员工编号</th>
+            <th>详细操作</th>
+            <th>操作时间</th>
+            <th>商品编号</th>
+            <th>订单编号</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody"></tbody>
+</table>
+<div id="paging" style="text-align:center">
+</div>
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/MenuJump/RecordingAjax.js"></script>

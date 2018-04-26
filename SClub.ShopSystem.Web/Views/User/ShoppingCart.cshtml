@@ -1,0 +1,88 @@
+﻿@model List<SClub.ShopSystem.Web.Models.CartModel>
+@{
+    Layout = "~/Views/User/_UserLayout.cshtml";
+    ViewBag.Title = "购物车";
+}
+<link href="~/Js/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<table id="data-table-cart">
+   
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="selectAll" onchange="SelectAll()" /><span>全选</span></th>
+            <th>商品编号</th>
+            <th>商品名字</th>
+            <th>商品类型</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>总价</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    @if (Model != null)
+    {
+        <tbody id="tableBody">
+            @foreach (var goods in Model)
+            {
+
+                <tr class="alter">
+                    <td><input type="checkbox" id="@goods.CartId" name="cart[CartId]" value="@goods.CartId" onchange="Select()" /></td>
+                    <td>@goods.GoodsId</td>
+                    <td><img src="@goods.Img" style="height:30px;width:30px;margin-right:10px;" />@goods.GoodsName</td>
+                    <td>@goods.GoodsStyle</td>
+                    <td>@goods.Price</td>
+                    <td>@goods.Count</td>
+                    <td>@(goods.Count * goods.Price)</td>
+                    <td>
+                        <button class="layui-btn layui-btn-normal" onclick="BuyOneGoodsInCart(@goods.CartId)">结算</button>
+                        <button class="layui-btn layui-btn-normal" onclick="RemoveGoodsInCart(@goods.CartId)">移出</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+<button id="BuyAll_Btn" class="layui-btn layui-btn-disabled" onclick="BuyGoodsInCart()">结算</button>
+<div id="address_Modal" style="display:none;">
+    <form class="layui-form" action="" onsubmit="return false">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:100px;">地址列表：</label>
+            <div class="layui-input-block" id="address_List">
+
+            </div>
+        </div>
+        <div style="text-align:center"><button class="layui-btn" onclick="BuyGoodsInCartBtn()">确定</button><a href="/User/AddressInfo">添加地址</a></div>
+    </form>
+
+
+    <div id="paging"></div>
+</div>
+<script src="~/Js/User/ShoppingCart.js"></script>
+<script src="~/Js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#data-table-cart').dataTable({
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "decimal": ",",
+                "thousands": "."
+            },
+            columnDefs: [{
+                targets: [0],
+                orderData: [0, 1]  //如果第一列进行排序，有相同数据则按照第二列顺序排列
+            }, {
+                targets: [1],
+                orderData: [1, 0]  //如果第二列进行排序，有相同数据则按照第一列顺序排列
+            }, {
+                targets: [4],
+                orderData: [4, 0]  //如果第五列进行排序，有相同数据则按照第一列顺序排列
+            }]
+       });
+    });
+</script>

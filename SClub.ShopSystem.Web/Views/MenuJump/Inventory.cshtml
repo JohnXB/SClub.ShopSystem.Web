@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "库存管理";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+@using SClub.ShopSystem.Web.Models;
+@{
+    AdminModel user = (AdminModel)Session["admin"];
+}
+
+<link href="~/Css/MenuJump/Table.css" rel="stylesheet" />
+<link href="~/Css/MenuJump/Modal.css" rel="stylesheet" />
+
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">库存管理</legend>
+</fieldset>
+
+<div style="width:98%;margin:auto;margin-bottom:20px;">
+    <button class="layui-btn layui-btn-normal" value="游戏" onclick="ChangeTable(value);">精品游戏</button>
+    <button class="layui-btn layui-btn-normal" value="装备" onclick="ChangeTable(value); ">豪华装备</button>
+    <button class="layui-btn layui-btn-normal" value="周边" onclick="ChangeTable(value);">精美周边</button>
+
+</div>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+        <tr id="tableHead">
+            <th>商品编号</th>
+            <th>商品名</th>
+            <th>库存</th>
+            <th>操作</th>
+        </tr>
+
+    </thead>
+
+    <tbody id="tableBody"></tbody>
+</table>
+
+
+<div id="paging" style="text-align:center">
+</div>
+<form action="/Backstage/InventoryAdd" method="post">
+    <div id="modal-overlay-hill1" class="modal-overlay">
+        <div class="modal-data">
+            入库数量:<input type="text" onblur="CheckAddCount();" onkeyup="CheckAddCount();" style="color:#000;" name="AddInventory" id="AddInventory" />
+            <div id="addTip"></div>
+            <input type="hidden" id="goodsIdAdd" name="goodsIdAdd" />
+            <p>
+                <input type="button" value="返回" onclick="ClouseModal1()" style="color:#000;">
+                <input type="submit" value="确定" id="addSubmit" style="color:#000;" disabled="disabled">
+            </p>
+        </div>
+
+    </div>
+
+</form>
+<form action="/Backstage/InventorySub" method="post">
+    <div id="modal-overlay-hill2" class="modal-overlay">
+        <div class="modal-data">
+            出库数量:
+            <input type="text" onblur="CheckSubCount();" onkeyup="CheckSubCount();" name="SubInventory" id="SubInventory" style="color:#000;" />
+            <div id="subTip"></div>
+            <input type="hidden" id="goodsIdSub" name="goodsIdSub" />
+            <input type="hidden" id="SubGoodsCount" name="SubGoodsCount" />
+            <p>
+                <input type="button" value="返回" onclick="ClouseModal2()" style="color:#000;">
+                <input type="submit" value="确定" id="subSubmit" style="color:#000;" disabled="disabled">
+            </p>
+        </div>
+
+    </div>
+</form>
+
+<script src="~/Js/jquery-1.11.0.min.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/MenuJump/Inventory.js"></script>

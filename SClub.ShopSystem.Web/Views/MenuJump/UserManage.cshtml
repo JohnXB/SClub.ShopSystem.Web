@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "员工管理";
+    Layout = "~/Views/Backstage/_BackstageLayout.cshtml";
+}
+
+<link href="~/Js/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+
+<fieldset class="layui-elem-field layui-field-title"style="margin-top:0px;text-align:center;">
+    <legend style="padding-top:20px;">员工管理</legend>
+</fieldset>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+        <tr id="tableHead">
+            <th>员工编号</th>
+            <th>员工名字</th>
+            <th>入职时间</th>
+            <th>角色列表</th>
+            <th>密码重置</th>
+            <th>权限管理</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody"></tbody>
+</table>
+<div id="paging" style="text-align:center">
+</div>
+<div id="treeDem" style="display:none;text-align:center">
+    <ul id="treeDemo" class="ztree"></ul>
+    <input type="hidden" id="userIdInTree"/>
+    <button class="layui-btn layui-btn-normal" onclick="SavePermissionChange()">确定</button>
+</div>
+<script src="~/Js/zTree_v3/js/jquery.ztree.core.js"></script>
+<script src="~/Js/zTree_v3/js/jquery.ztree.excheck.js"></script>
+<script src="~/Js/layui/layui.js"></script>
+<script src="~/Js/MenuJump/UserManage.js"></script>
+
+<script>
+ 
+
+</script>

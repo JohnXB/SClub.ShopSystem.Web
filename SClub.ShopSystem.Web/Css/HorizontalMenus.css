@@ -1,0 +1,98 @@
+﻿@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
+
+
+
+
+.field {
+  display:flex;
+  margin:5em auto;
+  width:70%;
+  flex-direction:row;
+  
+}
+
+.field>input[type=text],
+.field>button {
+  display:block;
+  font:1.2em 'Montserrat Alternates';
+}
+
+.field>input[type=text] {
+  flex:1;
+  padding:0.6em;
+  border:0.2em solid rgb(26, 188, 156);
+}
+
+.field>button {
+  padding:0.6em 0.8em;
+  background-color:rgb(26, 188, 156);
+  color:white;
+  border:none;
+}
+*{
+    margin:0;
+    padding:0;
+    border:0;
+    list-style: none;
+
+}
+
+.menu {
+    height: 48px;
+    display: block;
+    padding: 0px;
+    width: 1000px;
+    margin: 0 auto;
+    background-repeat: repeat;
+}
+.menu ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+
+}
+.menu ul li{
+    float:left;
+    overflow:hidden;
+    position:relative;
+    line-height:48px;
+    text-align:center;
+}
+.menu ul li a{
+    position:relative;
+    display:block;
+    width:250px;
+    height:48px;
+    font-family:"微软雅黑", "宋体";
+    font-size:16px;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:bold;
+    line-height:48px;
+
+}
+.menu ul li a:hover{
+    color:#ff0000;
+}
+.menu ul li a span{
+    position:absolute;
+    left:0;
+    width:250px;
+
+}
+.menu ul li a span.out{
+    top:0px;
+
+}
+.menu ul li a span.over,  .menu ul li a span.bg{top:-48px;}
+    .menu ul li a span.over {
+        color: #FFF;
+        height: 48px;
+        width: 250px;
+        background-image: url('../Img/w_03.jpg');
+        background-repeat: repeat;
+    }
+
+
+    
